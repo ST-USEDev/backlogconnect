@@ -60,7 +60,10 @@ app.use('/token', function(req, res){
 		"        redirect_uri:'" + SF_REDIRECT_URI + "'" +
 		"    }," +
 		"    success:function(result, textStatus, xhr){" + 
-		"        console.log('aaaaa');" +
+		"        console.log('success');" +
+		"    }," +
+		"    error:function(xhr, textStatus, error){" + 
+		"        console.log('error' + error);" +
 		"    }" +
 		"});" +
 		"</script>";
