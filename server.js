@@ -19,9 +19,11 @@ app.post('/', function(req,res){
 	console.log(req.url);
 	console.log(req.query);
 	console.log(req.body);
+	res.end();
 });
 
 app.get('/', function(req,res){
 	console.log(req.url);
 	console.log(req.query);
+	res.end();
 });
