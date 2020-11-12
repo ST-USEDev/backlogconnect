@@ -46,7 +46,7 @@ app.use('/token', function(req, res){
 	if(req.query.code){
 		res.set('Content-Type', 'text/html');
 		const html = 
-		"<script src='//code.jquery.com/jquery-3.5.1.min.js'>" +
+		"<script type='text/javascript' src='https://code.jquery.com/jquery-3.5.1.min.js'>" +
 		"<script>" +
 		"$.ajax({" + 
 		"    type:'POST'," + 
