@@ -34,7 +34,6 @@ let accessToken = null;
 app.use('/auth', function(req, res){
 	// ログ出力
 	console.log("--- authorize call ---");
-	/*
 	// レスポンスヘッダを設定
 	res.set('Content-Type', 'text/html');
 	// 遷移用のhtml準備
@@ -49,26 +48,6 @@ app.use('/auth', function(req, res){
 	"</script>";
 	// レンダリング
 	res.send(Buffer.from(html));
-	*/
-	request.post(
-		{
-			url:SF_INSTANCE_URL + "/services/oauth2/authorize",
-			headers:{
-				"content-type":"application/x-www-form-urlencoded"
-			},
-			body:JSON.stringify({
-				response_type:"code",
-				client_id:SF_CLIENT_ID,
-				redirect_uri:SF_REDIRECT_URI
-			})
-		},
-		function(error, response, body){
-			console.log(response);
-			res.writeHead(200, {"content-type":"text/html"});
-			res.send(body);
-		}
-	);
-	res.end();
 });
 /**
  * 認証→コールバック（認証コード取得）
@@ -78,6 +57,7 @@ app.use('/token', function(req, res){
 	console.log("--- token call ---");
 	// コードが含まれる場合（含まれていないのは不正なリクエスト）
 	if(req.query.code){
+		/*
 		// ヘッダ設定
 		res.set('Content-Type', 'text/html');
 		// token発行のためのAjax通信実行用のスクリプトを書き込む
@@ -120,6 +100,24 @@ app.use('/token', function(req, res){
 		"</script>";
 		// レンダリング
 		res.send(Buffer.from(html));
+		*/
+		
+		request.post(
+			{
+				url:SF_INSTANCE_URL + "/services/oauth2/token",
+				body:JSON.stringify({
+					grant_type:'authorization_code',
+					code:req.query.code,
+					client_id:SF_CLIENT_ID,
+					client_secret:SF_CLIENT_SECRET',
+					redirect_uri:SF_REDIRECT_URI
+				}
+			},
+			function(error, response, body){
+				console.log("SUCCEESS");
+				console.log(body.access_token);
+			}
+		);
 	}
 	// レスポンス終了
 	res.end();
