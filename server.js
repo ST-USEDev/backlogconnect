@@ -63,6 +63,7 @@ app.use('/auth', function(req, res){
 			})
 		},
 		function(error, response, body){
+			res.writeHead(200, {"content-type":"text/html"});
 			res.send(body);
 		}
 	);
