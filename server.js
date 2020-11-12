@@ -48,7 +48,6 @@ app.use('/token', function(req, res){
 		const html = 
 		"<script type='text/javascript' src='https://code.jquery.com/jquery-3.5.1.min.js'></script>" +
 		"<script type='text/javascript'>" +
-		"console.log('is script working?');" +
 		"$.ajax({" + 
 		"    type:'POST'," + 
 		"    url:'" + SF_INSTANCE_URL + "/services/oauth2/token'," + 
@@ -62,6 +61,7 @@ app.use('/token', function(req, res){
 		"    }," +
 		"    success:function(result, textStatus, xhr){" + 
 		"        console.log('success');" +
+		"        console.log(xhr);" +
 		"    }," +
 		"    error:function(xhr, textStatus, error){" + 
 		"        console.log('error' + error);" +
