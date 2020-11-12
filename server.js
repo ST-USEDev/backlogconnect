@@ -15,14 +15,18 @@ app.listen(PORT);
 
 console.log("server start PORT=" + PORT);
 
-app.post('/', function(req,res){
+let bodyData = null;
+
+app.post('/', function(req, res){
 	console.log(req.url);
 	console.log(req.query);
 	console.log(req.body);
+	bodyData = req.body;
+
 	res.end();
 });
 
-app.get('/', function(req,res){
+app.get('/auth', function(req, res){
 	console.log(req.url);
 	console.log(req.query);
 	res.end();
