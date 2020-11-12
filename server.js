@@ -61,12 +61,29 @@ app.use('/token', function(req, res){
 		"    }," +
 		"    success:function(result, textStatus, xhr){" + 
 		"        console.log('success');" +
-		"        console.log(xhr);" +
+		"        console.log(xhr.responseJSON.access_token);" +
+		"        restcall(xhr.responseJSON.access_token);" +
 		"    }," +
 		"    error:function(xhr, textStatus, error){" + 
 		"        console.log('error' + error);" +
 		"    }" +
 		"});" +
+		"function restcall(token){" +
+		"    $.ajax({" +
+		"        type:'POST'," *
+		"        url:'" + SF_INSTANCE_URL + "/services/apexrest/backlogconnect'," + 
+		"        dataType:'xml'," +
+		"        beforeSend:function(xhr, settings){" +
+		"            xhr.setRequestHeader('Authorization', 'Bearer ' + token);"
+		"        }," +
+		"        success:function(result, textStatus, xhr){" + 
+		"            console.log('success');" +
+		"        }," +
+		"        error:function(xhr, textStatus, error){" + 
+		"            console.log('error' + error);" +
+		"        }" +
+		"    });" +
+		"}"
 		"</script>";
 		res.send(Buffer.from(html));
 	}
