@@ -85,7 +85,7 @@ app.use('/token', function(req, res){
 		"function passToken(token){" +
 		"    $.ajax({" +
 		"        type:'GET'," +
-		"        url:'" + __dirname + "/passtoken?token=' + token," + 
+		"        url:'https://backlogconnect.herokuapp.com/passtoken?token=' + token," + 
 		"        dataType:'xml'," +
 		"        success:function(result, textStatus, xhr){" + 
 		"            console.log('success');" +
