@@ -12,6 +12,7 @@ const SF_REDIRECT_URI = "https://backlogconnect.herokuapp.com/token";
 // Nodeモジュールの準備
 const express = require("express");
 const parser = require("body-parser");
+const request = require("request");
 // Expressのインスタンス化
 const app = express();
 // body-parserの準備
