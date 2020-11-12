@@ -5,8 +5,6 @@ const PORT = process.env.PORT || 8080;
 const SF_INSTANCE_URL = "3MVG9rnryk9FxFMXMi93yAP6uKBjb3YsMBzAqjdXCT9YR.4Trha3ANDntg4SLcPvAtFj9DL8TmSCf42lUmaU.";
 const REDIRECT_URI = "";
 
-const CLIENT_ID = 
-
 const express = require("express");
 const parser = require("body-parser");
 
