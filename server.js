@@ -106,11 +106,11 @@ app.use('/token', function(req, res){
 			{
 				url:SF_INSTANCE_URL + "/services/oauth2/token",
 				json:{
-					grant_type:"authorization_code",
+					grantType:"authorization_code",
 					code:req.query.code,
-					client_id:SF_CLIENT_ID,
-					client_secret:SF_CLIENT_SECRET,
-					redirect_uri:SF_REDIRECT_URI
+					clientId:SF_CLIENT_ID,
+					clientSecret:SF_CLIENT_SECRET,
+					redirectUri:SF_REDIRECT_URI
 				}
 			},
 			function(error, response, body){
