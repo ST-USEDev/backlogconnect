@@ -1,12 +1,27 @@
 "use strict";
 
-const http = require("http");
 const PORT = process.env.PORT || 8080;
 
-http.createServer(function(req, res){
-	console.log("--- Request Listen ---");
-	console.log(req.body);
-	res.end();
-}).listen(PORT);
+const express = require("express");
+const parser = require("body-parser");
+
+const app = express();
+
+app.use(parser.urlencoded({extended:true}));
+
+app.use(parser.json());
+
+app.listen(PORT);
 
 console.log("server start PORT=" + PORT);
+
+app.post('/', function(req,res){
+	console.log(req.url);
+	console.log(req.query);
+	console.log(req.body);
+});
+
+app.get('/', function(req,res){
+	console.log(req.url);
+	console.log(req.query);
+});

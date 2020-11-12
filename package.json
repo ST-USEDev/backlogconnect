@@ -18,5 +18,8 @@
     "url": "https://github.com/ST-USEDev/backlogconnect/issues"
   },
   "homepage": "https://github.com/ST-USEDev/backlogconnect#readme",
-  "dependencies": {}
+  "dependencies": {
+    "express" : "^4.17.1",
+    "body-parser" : "^1.15.2"
+  }
 }
