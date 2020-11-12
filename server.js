@@ -2,6 +2,11 @@
 
 const PORT = process.env.PORT || 8080;
 
+const SF_INSTANCE_URL = "3MVG9rnryk9FxFMXMi93yAP6uKBjb3YsMBzAqjdXCT9YR.4Trha3ANDntg4SLcPvAtFj9DL8TmSCf42lUmaU.";
+const REDIRECT_URI = "";
+
+const CLIENT_ID = 
+
 const express = require("express");
 const parser = require("body-parser");
 
@@ -17,7 +22,16 @@ console.log("server start PORT=" + PORT);
 
 let bodyData = null;
 
-app.post('/', function(req, res){
+// 認証をする
+app.get('/auth', function(req, res){
+
+	res.send(Buffer.from("abc"));
+	
+	res.redirect(307, SF_INSTANCE_URL + "/oauth2/authorize");
+});
+
+// BacklogのWebhookからのコール
+app.post('/webhook', function(req, res){
 	console.log(req.url);
 	console.log(req.query);
 	console.log(req.body);
@@ -27,7 +41,6 @@ app.post('/', function(req, res){
 });
 
 app.get('/auth', function(req, res){
-	console.log(req.url);
 	console.log(req.query);
 	res.end();
 });
