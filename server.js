@@ -1,6 +1,7 @@
 "use strict";
 
 const http = require("http");
+const PORT = 8080;
 
 http.createServer(function(req, res){
 	/*
@@ -8,4 +9,7 @@ http.createServer(function(req, res){
 	console.log(res);
 	*/
 	console.log("request listen");
-}).listen(8080);
+	res.end();
+}).listen(PORT);
+
+console.log("server start PORT=" + PORT);
