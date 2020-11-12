@@ -18,7 +18,9 @@
 			}
 			
 			this.set = function(data){
-				localStorage.setItem(storageKey, JSON.stringify(data));
+				if(data){
+					localStorage.setItem(storageKey, JSON.stringify(data));
+				}
 			}
 			
 			this.remove = function(){
@@ -32,7 +34,7 @@
 		
 		<?php foreach($_POST as $key => $value){ ?>
 			dataAdd = true;
-			data["<?php echo $key; ?>"] = "<?php $value; ?>";
+			data["<?php echo $key; ?>"] = "<?php echo $value; ?>";
 		<?php }?>
 		
 		if(dataAdd){
