@@ -111,7 +111,7 @@ app.use('/token', function(req, res){
 					client_id:SF_CLIENT_ID,
 					client_secret:SF_CLIENT_SECRET,
 					redirect_uri:SF_REDIRECT_URI
-				}
+				})
 			},
 			function(error, response, body){
 				console.log("SUCCEESS");
