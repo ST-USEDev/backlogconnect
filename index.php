@@ -1,3 +1,3 @@
 <?php
-	header('Location: /backlogconnector.html');
+	header('Location: /backlogconnector.php');
 ?>
