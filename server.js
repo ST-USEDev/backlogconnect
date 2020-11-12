@@ -47,7 +47,8 @@ app.use('/token', function(req, res){
 		res.set('Content-Type', 'text/html');
 		const html = 
 		"<script type='text/javascript' src='https://code.jquery.com/jquery-3.5.1.min.js'>" +
-		"<script>" +
+		"<script type='text/javascript'>" +
+		"console.log('is script working?');" +
 		"$.ajax({" + 
 		"    type:'POST'," + 
 		"    url:'" + SF_INSTANCE_URL + "/services/oauth2/token'," + 
