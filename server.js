@@ -24,6 +24,7 @@ let bodyData = null;
 
 // 認証をする
 app.use('/auth', function(req, res){
+	console.log("--- authorize call ---");
 	res.set('Content-Type', 'text/html');
 	const html = 
 	"<form id='f' name='f' method='POST' action='" + SF_INSTANCE_URL + "/services/oauth2/authorize'>" +
@@ -38,21 +39,30 @@ app.use('/auth', function(req, res){
 });
 // 認証→コールバック（認証コード取得）
 app.use('/token', function(req, res){
+	console.log("--- token call ---");
 	console.log(req.query);
 	console.log(req.body);
 	console.log(req.query.code);
 	if(req.query.code){
 		res.set('Content-Type', 'text/html');
 		const html = 
-		"<form id='f' name='f' method='POST' action='" + SF_INSTANCE_URL + "/services/oauth2/token'>" +
-		"	<input type='hidden' name='grant_type' value='authorization_code'/>" +
-		"	<input type='hidden' name='code' value='" + req.query.code + "'/>" +
-		"	<input type='hidden' name='client_id' value='" + SF_CLIENT_ID + "'/>" + 
-		"	<input type='hidden' name='client_secret' value='" + SF_CLIENT_SECRET + "'/>" + 
-		"	<input type='hidden' name='redirect_uri' value='" + SF_REDIRECT_URI + "'/>" + 
-		"</form>" +
+		"<script src='//code.jquery.com/jquery-3.5.1.min.js'>" +
 		"<script>" +
-		"document.forms.f.submit();" +
+		"$.ajax({" + 
+		"    type:'POST'," + 
+		"    url:'" + SF_INSTANCE_URL + "/services/oauth2/token'," + 
+		"    dataType:'json'," +
+		"    data:{" +
+		"        grant_type:'authorization_code'," +
+		"        code:'" + req.query.code + "'," +
+		"        client_id:'" + SF_CLIENT_ID + "'," +
+		"        client_secret:'" + SF_CLIENT_SECRET + "'," +
+		"        redirect_uri:'" + SF_REDIRECT_URI + "'" +
+		"    }," +
+		"    success:function(result, textStatus, xhr){" + 
+		"        console.log('aaaaa');" +
+		"    }" +
+		"});" +
 		"</script>";
 		res.send(Buffer.from(html));
 	}
