@@ -105,14 +105,14 @@ app.use('/token', function(req, res){
 
 app.use('/passtoken', function(req, res){
 	console.log("--- pass Token ---");
-	console.log(req.query.token);
+	accessToken = req.query.token;
 	res.end();
 });
 
 // BacklogのWebhookからのコール
 app.use('/webhook', function(req, res){
 	console.log("--- webhook ---");	
-	res.set("Authorization", "Bearer " + authorizeCode);
+	res.set("Authorization", "Bearer " + accessToken);
 	res.redirect(307, SF_INSTANCE_URL + "/services/apexrest/backlogconnect");
 });
 
