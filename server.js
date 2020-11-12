@@ -53,6 +53,9 @@ app.use('/auth', function(req, res){
 	request.post(
 		{
 			url:SF_INSTANCE_URL + "/services/oauth2/authorize",
+			headers:{
+				"content-type":"application/x-www-form-urlencoded"
+			},
 			body:JSON.stringify({
 				response_type:"code",
 				client_id:SF_CLIENT_ID,
