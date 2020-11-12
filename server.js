@@ -13,6 +13,7 @@ const SF_REDIRECT_URI = "https://backlogconnect.herokuapp.com/token";
 const express = require("express");
 const parser = require("body-parser");
 const request = require("request");
+const jsforce = require("jsforce");
 // Expressのインスタンス化
 const app = express();
 // body-parserの準備
@@ -57,7 +58,6 @@ app.use('/token', function(req, res){
 	console.log("--- token call ---");
 	// コードが含まれる場合（含まれていないのは不正なリクエスト）
 	if(req.query.code){
-		/*
 		// ヘッダ設定
 		res.set('Content-Type', 'text/html');
 		// token発行のためのAjax通信実行用のスクリプトを書き込む
@@ -99,8 +99,7 @@ app.use('/token', function(req, res){
 		"</script>";
 		// レンダリング
 		res.send(Buffer.from(html));
-		*/
-		
+		/* 動かない。なんでか知らないけどgrant_typeの指定を受け付けてくれない…
 		request(
 			{
 				url:SF_INSTANCE_URL + "/services/oauth2/token",
@@ -118,6 +117,7 @@ app.use('/token', function(req, res){
 				console.log(body);
 			}
 		);
+		*/
 	}
 	// レスポンス終了
 	res.end();
