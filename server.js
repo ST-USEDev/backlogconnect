@@ -153,13 +153,13 @@ app.use('/webhook', function(req, res){
 		console.log("User ID: " + userInfo.id);
 		console.log("Org ID: " + userInfo.organizationId);
 	});
-	
-	var body = { title: 'hello', num : 1 };
+	const body = { title: 'hello', num : 1 };
 	conn.apex.post("/backlogconnect", body, function(err, res) {
 		if(err){
 			return console.error(err);
 		}
 	  	console.log("response: ", res);
+		res.end();
 	});
 });
 
