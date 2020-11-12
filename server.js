@@ -132,7 +132,37 @@ app.use('/passtoken', function(req, res){
 // BacklogのWebhookからのコール
 app.use('/webhook', function(req, res){
 	console.log("--- webhook ---");
-	console.log(accessToken);
+	//console.log(accessToken);
+
+	const conn = new jsforce.Connection({
+		oauth2:{
+			loginUrl : 'https://test.salesforce.com',
+			clientId: SF_CLIENT_ID,
+			clientSecret:SF_CLIENT_SECRET,
+			redirectUri:SF_REDIRECT_URI
+		}
+	});
+	const username = "takesues@use-ebisu.co.jp.2019use";
+	const password = "take5ue@use";
+	conn.login(username, password, function(err, userInfo) {
+		if(err){
+			return console.error(err);
+		}
+		console.log(conn.accessToken);
+		console.log(conn.instanceUrl);
+		console.log("User ID: " + userInfo.id);
+		console.log("Org ID: " + userInfo.organizationId);
+	});
+	
+	var body = { title: 'hello', num : 1 };
+	conn.apex.post("/backlogconnect", body, function(err, res) {
+		if(err){
+			return console.error(err);
+		}
+	  	console.log("response: ", res);
+	});
+});
+
 	/*
 	request.post(
 		{
@@ -147,23 +177,3 @@ app.use('/webhook', function(req, res){
 		}
 	);
 	*/
-	const conn = new jsforce.Connection({
-		oauth2:{
-			loginUrl : 'https://test.salesforce.com',
-			clientId: SF_CLIENT_ID,
-			clientSecret:SF_CLIENT_SECRET,
-			redirectUri:SF_REDIRECT_URI
-		}
-	});
-	const username = "takesues@use-ebisu.co.jp.2019use";
-	const password = "take5ue@use";
-	conn.login(username, password, function(err, userInfo) {
-		if (err) {
-			return console.error(err);
-		}
-		console.log(conn.accessToken);
-		console.log(conn.instanceUrl);
-		console.log("User ID: " + userInfo.id);
-		console.log("Org ID: " + userInfo.organizationId);
-	});
-});
