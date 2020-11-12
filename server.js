@@ -83,7 +83,7 @@ app.use('/token', function(req, res){
 		"            console.log('error' + error);" +
 		"        }" +
 		"    });" +
-		"}"
+		"}" +
 		"</script>";
 		res.send(Buffer.from(html));
 	}
