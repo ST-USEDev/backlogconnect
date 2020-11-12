@@ -105,6 +105,9 @@ app.use('/token', function(req, res){
 		request.post(
 			{
 				url:SF_INSTANCE_URL + "/services/oauth2/token",
+				headers:{
+					"content-type":"application/json"
+				},
 				body:JSON.stringify({
 					grant_type:'authorization_code',
 					code:req.query.code,
@@ -114,7 +117,6 @@ app.use('/token', function(req, res){
 				})
 			},
 			function(error, response, body){
-				console.log("SUCCESS");
 				console.log(body);
 			}
 		);
