@@ -20,6 +20,7 @@
   "homepage": "https://github.com/ST-USEDev/backlogconnect#readme",
   "dependencies": {
     "express" : "^4.17.1",
-    "body-parser" : "^1.15.2"
+    "body-parser" : "^1.15.2",
+    "request":"^2.88.2"
   }
 }
