@@ -70,11 +70,11 @@ app.use('/token', function(req, res){
 		"});" +
 		"function restcall(token){" +
 		"    $.ajax({" +
-		"        type:'POST'," *
+		"        type:'POST'," +
 		"        url:'" + SF_INSTANCE_URL + "/services/apexrest/backlogconnect'," + 
 		"        dataType:'xml'," +
 		"        beforeSend:function(xhr, settings){" +
-		"            xhr.setRequestHeader('Authorization', 'Bearer ' + token);"
+		"            xhr.setRequestHeader('Authorization', 'Bearer ' + token);" +
 		"        }," +
 		"        success:function(result, textStatus, xhr){" + 
 		"            console.log('success');" +
