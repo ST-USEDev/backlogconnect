@@ -133,6 +133,7 @@ app.use('/passtoken', function(req, res){
 app.use('/webhook', function(req, res){
 	console.log("--- webhook ---");
 	console.log(accessToken);
+	/*
 	request.post(
 		{
 			url:SF_INSTANCE_URL + "/services/apexrest/backlogconnect",
@@ -145,23 +146,24 @@ app.use('/webhook', function(req, res){
 			console.log("success");
 		}
 	);
+	*/
+	const conn = new jsforce.Connection({
+		oauth2:{
+			loginUrl : 'https://test.salesforce.com',
+			clientId: SF_CLIENT_ID,
+			clientSecret:SF_CLIENT_SECRET,
+			redirectUri:SF_REDIRECT_URI
+		}
+	});
+	const username = "takesues@use-ebisu.co.jp.2019use";
+	const password = "take5ue@use";
+	conn.login(username, password, function(err, userInfo) {
+		if (err) {
+			return console.error(err);
+		}
+		console.log(conn.accessToken);
+		console.log(conn.instanceUrl);
+		console.log("User ID: " + userInfo.id);
+		console.log("Org ID: " + userInfo.organizationId);
+	});
 });
-
-/*
-"function restcall(token){" +
-		"    $.ajax({" +
-		"        type:'POST'," +
-		"        url:'" + SF_INSTANCE_URL + "/services/apexrest/backlogconnect'," + 
-		"        dataType:'xml'," +
-		"        beforeSend:function(xhr, settings){" +
-		"            xhr.setRequestHeader('Authorization', 'Bearer ' + token);" +
-		"        }," +
-		"        success:function(result, textStatus, xhr){" + 
-		"            console.log('success');" +
-		"        }," +
-		"        error:function(xhr, textStatus, error){" + 
-		"            console.log('error' + error);" +
-		"        }" +
-		"    });" +
-		"}" +
-*/
