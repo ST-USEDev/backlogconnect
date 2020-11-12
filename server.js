@@ -88,7 +88,6 @@ app.use('/token', function(req, res){
 		"    $.ajax({" +
 		"        type:'GET'," +
 		"        url:'https://backlogconnect.herokuapp.com/passtoken?token=' + token," + 
-		"        dataType:'xml'," +
 		"        success:function(result, textStatus, xhr){" + 
 		"            console.log('success');" +
 		"        }," +
@@ -102,15 +101,16 @@ app.use('/token', function(req, res){
 		res.send(Buffer.from(html));
 		*/
 		
-		request.post(
+		request(
 			{
 				url:SF_INSTANCE_URL + "/services/oauth2/token",
-				json:{
-					grantType:"authorization_code",
+				method:"POST",
+				oauth:{
+					grant_type:"authorization_code",
 					code:req.query.code,
-					clientId:SF_CLIENT_ID,
-					clientSecret:SF_CLIENT_SECRET,
-					redirectUri:SF_REDIRECT_URI
+					client_id:SF_CLIENT_ID,
+					client_secret:SF_CLIENT_SECRET,
+					redirect_uri:SF_REDIRECT_URI
 				}
 			},
 			function(error, response, body){
