@@ -34,6 +34,7 @@ let accessToken = null;
 app.use('/auth', function(req, res){
 	// ログ出力
 	console.log("--- authorize call ---");
+	/*
 	// レスポンスヘッダを設定
 	res.set('Content-Type', 'text/html');
 	// 遷移用のhtml準備
@@ -48,6 +49,21 @@ app.use('/auth', function(req, res){
 	"</script>";
 	// レンダリング
 	res.send(Buffer.from(html));
+	*/
+	request.post(
+		{
+			url:SF_INSTANCE_URL + "/services/oauth2/authorize",
+			body:JSON.stringify({
+				response_type:"code",
+				client_id:SF_CLIENT_ID,
+				redirect_uri:SF_REDIRECT_URI
+			})
+		},
+		function(error, response, body){
+			res.send(body);
+		}
+	);
+	res.end();
 });
 /**
  * 認証→コールバック（認証コード取得）
@@ -119,7 +135,8 @@ app.use('/webhook', function(req, res){
 			url:SF_INSTANCE_URL + "/services/apexrest/backlogconnect",
 			headers:{
 				Authorization: "Bearer " + accessToken
-			}
+			},
+			body:req.body
 		},
 		function(error, response, body){
 			console.log("success");
