@@ -22,9 +22,9 @@ let bodyData = null;
 
 // 認証をする
 app.get('/auth', function(req, res){
-
 	res.set('Content-Type', 'text/html');
-	res.send(Buffer.from("<p>hoge</p>"));
+	const html = "<script>location.href = 'http://google.com';</script>";
+	res.send(Buffer.from(html));
 	res.redirect(307, SF_INSTANCE_URL + "/oauth2/authorize");
 });
 
