@@ -105,12 +105,13 @@ app.use('/token', function(req, res){
 			{
 				url:SF_INSTANCE_URL + "/services/oauth2/token",
 				method:"POST",
-				oauth:{
-					grant_type:"authorization_code",
-					code:req.query.code,
-					client_id:SF_CLIENT_ID,
-					client_secret:SF_CLIENT_SECRET,
-					redirect_uri:SF_REDIRECT_URI
+				headers:{"content-type":"application/json"},
+				json:{
+					"grant_type":"authorization_code",
+					"code":req.query.code,
+					"client_id":SF_CLIENT_ID,
+					"client_secret":SF_CLIENT_SECRET,
+					"redirect_uri":SF_REDIRECT_URI
 				}
 			},
 			function(error, response, body){
