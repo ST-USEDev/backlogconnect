@@ -109,7 +109,7 @@ app.use('/token', function(req, res){
 					grant_type:'authorization_code',
 					code:req.query.code,
 					client_id:SF_CLIENT_ID,
-					client_secret:SF_CLIENT_SECRET',
+					client_secret:SF_CLIENT_SECRET,
 					redirect_uri:SF_REDIRECT_URI
 				}
 			},
