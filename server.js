@@ -114,8 +114,17 @@ app.use('/passtoken', function(req, res){
 app.use('/webhook', function(req, res){
 	console.log("--- webhook ---");
 	console.log(accessToken);
-	res.set("Authorization", "Bearer " + accessToken);
-	res.redirect(307, SF_INSTANCE_URL + "/services/apexrest/backlogconnect");
+	request.post(
+		{
+			url:SF_INSTANCE_URL + "/services/apexrest/backlogconnect",
+			headers:{
+				Authorization: "Bearer " + accessToken
+			}
+		},
+		function(error, response, body){
+			console.log("success");
+		}
+	);
 });
 
 /*
