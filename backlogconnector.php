@@ -26,9 +26,20 @@
 			}
 		}
 		
+		const storage = new Storage();
+		const data = {};
+		let dataAdd = false;
+		
 		<?php foreach($_POST as $key => $value){ ?>
-			<?php echo $key. ":" .$value. "<BR/>"; ?>
+			dataAdd = true;
+			data["<?php echo $key; ?>"] = "<?php $value; ?>";
 		<?php }?>
+		
+		if(dataAdd){
+			storage.set(data);
+		}
+		
+		console.log(storage.get());
 	</script>
 	<body></body>
 </html>
