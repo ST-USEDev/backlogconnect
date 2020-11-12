@@ -114,8 +114,8 @@ app.use('/token', function(req, res){
 				})
 			},
 			function(error, response, body){
-				console.log("SUCCEESS");
-				console.log(body.access_token);
+				console.log("SUCCESS");
+				console.log(body);
 			}
 		);
 	}
