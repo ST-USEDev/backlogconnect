@@ -158,7 +158,6 @@ app.use('/webhook', function(req, res){
 				return console.error(err);
 			}
 		  	console.log("response: ", res);
-		  	res.end();
 		});
 	});
 
