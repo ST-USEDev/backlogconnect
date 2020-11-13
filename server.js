@@ -136,7 +136,7 @@ app.use('/webhook', function(req, res){
 
 	const conn = new jsforce.Connection({
 		oauth2:{
-			loginUrl : 'https://test.salesforce.com',
+			loginUrl : SF_INSTANCE_URL,
 			clientId: SF_CLIENT_ID,
 			clientSecret:SF_CLIENT_SECRET,
 			redirectUri:SF_REDIRECT_URI
