@@ -154,7 +154,7 @@ app.use('/webhook', function(req, res){
 		console.log("Org ID: " + userInfo.organizationId);
 	});
 	const body = { title: 'hello', num : 1 };
-	conn.apex.post("/backlogconnect", body, function(err, res) {
+	conn.apex.post("/backlogconnect/", body, function(err, res) {
 		if(err){
 			return console.error(err);
 		}
