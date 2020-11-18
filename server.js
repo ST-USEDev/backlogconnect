@@ -7,9 +7,9 @@ const PORT = process.env.PORT || 8080;
 // Salesforce側の接続アプリケーション情報
 const SFConnInfo = {
 	loginUrl     : "test.salesforce.com",
-	clientId     : "3MVG9rnryk9FxFMXMi93yAP6uKBjb3YsMBzAqjdXCT9YR.4Trha3ANDntg4SLcPvAtFj9DL8TmSCf42lUmaU.",
-	clientSecret : "7F92FE629BFB70AE8CBC373CDEF6C86B662E10FFEE57C916554A35D1BB61CC92",
-	redirectUri  : "https://backlogconnect.herokuapp.com/token"
+	clientId     : "3MVG9Nvmjd9lcjRnXRsawoLQ.Hv45xZgfH4uudpgRioVSsUyev2olcqEuWwLni0rChCVXCvJogxFikL0XlaQw",
+	clientSecret : "D6E5566925D5A25C2CC4ADC944FFC7BA244FCED7DF80BB0264B7B58EF6C8B261",
+	redirectUri  : "https://backlogconnect.herokuapp.com"
 };
 // Nodeモジュールの準備
 const express = require("express");
@@ -43,8 +43,8 @@ app.use('/', function(req, res){
 	// Salesforceとの接続アプリケーションとの接続の確立
 	const conn = new jsforce.Connection({oauth2:SFConnInfo});
 	// ログイン情報　※変数化する
-	const username = "takesues@use-ebisu.co.jp.2019use";
-	const password = "take5ue@use";
+	const username = "takesues@use-ebisu.co.jp.sp20";
+	const password = "take5ue@";
 	// OAuth2.0によるログイン処理の実行
 	conn.login(username, password,
 		// ログイン後の処理
@@ -55,7 +55,7 @@ app.use('/', function(req, res){
 			}
 			// Apex RestへのHttp POST Send
 			conn.apex.post(
-				"/backlogconnect/",
+				"/backlogconnect",
 				body,
 				function(err, rsp) {
 					// エラーならコンソールにエラー出力
