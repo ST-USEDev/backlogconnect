@@ -6,7 +6,7 @@
 const PORT = process.env.PORT || 8080;
 // Salesforce側の接続アプリケーション情報
 const SFConnInfo = {
-	loginUrl     : "test.salesforce.com",
+	loginUrl     : "https://test.salesforce.com",
 	clientId     : "3MVG9Nvmjd9lcjRnXRsawoLQ.Hv45xZgfH4uudpgRioVSsUyev2olcqEuWwLni0rChCVXCvJogxFikL0XlaQw",
 	clientSecret : "D6E5566925D5A25C2CC4ADC944FFC7BA244FCED7DF80BB0264B7B58EF6C8B261",
 	redirectUri  : "https://backlogconnect.herokuapp.com"
